@@ -1,0 +1,10 @@
+% EDITING COMMANDS
+
+% REMOVABLE FOOTNOTES (https://tex.stackexchange.com/questions/17816/)
+% use 
+%	\nota{...} 
+% in place of
+%	\footnote{...}
+% to have removable footnotes
+%\newcommand{\nota}[1]{\footnote{\color{red}#1}}	% comment this line to remove these footnotes...
+\newcommand{\nota}[1]{{\iffalse #1 \fi}}			% ... and uncomment this line

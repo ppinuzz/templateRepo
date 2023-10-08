@@ -1,0 +1,15 @@
+% MATLAB
+
+% ready-made package for MATLAB syntax highlighting (very good)
+\usepackage{matlab-prettifier}
+
+% listing environment already set for MATLAB code highlighting
+% https://tex.stackexchange.com/questions/78992/
+\lstnewenvironment{matlab}
+{
+	\lstset{style=Matlab-editor,
+			basicstyle=\ttfamily\small}
+}{}
+
+% shortcut for inline MATLAB code (!x=4!)
+\lstMakeShortInline[style=Matlab-editor]!							

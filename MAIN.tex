@@ -1,0 +1,127 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatex
+% !TEX spellcheck = en-GB
+% !BIB TS-program = bibtex
+
+\documentclass[a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{microtype}		% nice-looking fonts
+
+% MISCELLANEOUS PACKAGES
+\usepackage{comment}
+\usepackage{enumerate}		% for roman numerals (i), (ii), (iii), ecc.
+% IF QUOTES ARE NOT SET AS ``...'' IN TEXSTUDIO (or OVERLEAF is used):
+% LaTeX reproduces "..." verbatim (like ''...'') instead of using the mirrored version, to avoid typing them explicitely each time I can use the csquotes package
+\usepackage[italian=quotes]{csquotes}
+\MakeOuterQuote{"}
+\usepackage{mVersion}		% version number N.M
+\setVersion{0}				% "principal number" N (for big changes)
+%\increaseBuild				% increases M at each compilation (decomment at the end of the change to be recorded)
+\usepackage{xparse}			% for parsing when creating user-defined commands with default options
+%\setlength{\parindent}{0pt} % uncomment to remove automatic indentation of first line of paragraph
+
+
+% MATHS
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{amsthm}							% for the "Good practice" text box
+\usepackage{bm}								% bold font 
+\usepackage{braket}							% nice-looking brakets for sets
+\usepackage[overload]{empheq} 				% For braced-style systems of equations.
+
+
+% TABLES
+\usepackage{booktabs}					% rules (i.e. lines) to divide the rows of table
+\usepackage{caption}					% captions
+\usepackage{tabularx}					% user-defined columns
+\usepackage{float}						% float option [H]
+\usepackage{tikz}
+\graphicspath{{./figures}} 				% Directory of the images
+%\usepackage{rotating}					% for rotated tables
+\usepackage{tablefootnote}              % footnotes in tables
+\newcolumntype{L}{>{\ttfamily}{l}<{}}	% column with typewriter font applied 
+\newcolumntype{Y}{>{$}{l}<{$}}			% left-aligned column in math mode (https://tex.stackexchange.com/questions/112576/)
+
+
+% CODES
+%\usepackage[dvipsnames]{xcolor}	% colours for the environments
+%\usepackage{pythonhighlight}
+%\usepackage{matlabstyle}				% {matlab} environment
+
+
+% REFERENCES IN THE TEXT
+\bibliographystyle{alpha}				% citation style
+\usepackage{xurl}       				% url can be broken on several lines
+%\usepackage{bigfoot}					% for CODES and URLS in footnotes (https://tex.stackexchange.com/questions/203)
+\usepackage{hyperref}   				% clickable links
+\hypersetup{
+	colorlinks=true,    			% coloured links (otherwise they're in red boxes)
+	citecolor=red,					% default is green, not that much visible
+}
+\usepackage[english]{cleveref}			% handy \cref{lab1,lab2} and \Cref{} commands
+\usepackage{todonotes}
+%\usepackage[nottoc,numbib]{tocbibind}
+
+
+% FIGURES
+\usepackage{graphicx}		% to include external images with \includegraphics{}
+\usepackage{standalone}		% outsourcing figures
+
+
+% ------------------------------------------------------------------------------
+%							USER DEFINED COMMANDS
+% ------------------------------------------------------------------------------
+
+
+\newcommand{\lato}[1]{#1\marginpar{\footnotesize #1}}			% marginpar with small text
+\newcommand{\nb}{\textbf{NB: }}								% bold "NB:"
+\newcommand{\imp}[1]{\colorbox{yellow}{#1}}					% yellow highlight
+% https://tex.stackexchange.com/questions/296121/
+%\newcommand{\imp}[1]{\colorbox{yellow}{\parbox{\dimexpr\linewidth-2\fboxsep}{#1}}}
+\newcommand{\prov}[1]{{\color{red} #1}}						% to be checked
+
+
+\usepackage{mathsCommand}
+
+% TEXT HIGHLIGHTING (to distinguish scope of informations in the text)
+% (for the conditional compilation with \ifdefined: https://tex.stackexchange.com/questions/33576)
+\newenvironment{theory}{\ifdefined\THEORY 		\color{Orange} 			\fi}{}	% theory (advanced)
+\newcommand{\theo}[1]{\ifdefined\THEORY 		{\color{Orange} #1} 	\fi}
+\newenvironment{advanced}{\ifdefined\ADVANCED 	\color{OliveGreen} 		\fi}{}	% advanced level/details
+\newcommand{\adv}[1]{\ifdefined\ADVANCED 		{\color{OliveGreen} #1} \fi}
+\newenvironment{basic}{\ifdefined\BASIC 		\color{RoyalBlue} 		\fi}{}	% basic information
+\newcommand{\bas}[1]{\ifdefined\BASIC 			{\color{RoyalBlue} #1} 	\fi}
+
+
+% CONDITIONAL COMPILATION: to control which "the level" of the notes, decomment only the desired level
+% (https://tex.stackexchange.com/questions/33576)
+\newcommand*{\BASIC}{}
+\newcommand*{\THEORY}{}
+\newcommand*{\ADVANCED}{}
+
+\begin{document}
+\title{CFD notes}
+\author{Andrea Pinardi}
+\date{\today \\[1ex] version \version}
+\maketitle
+
+Prova \cite{Qin2021} 
+
+% ------------------------------------------------------------------------------
+%								APPENDICES
+% ------------------------------------------------------------------------------
+
+\appendix
+%\input{chapters/glossary}
+
+% ------------------------------------------------------------------------------
+%								BIBLIOGRAPHY
+% ------------------------------------------------------------------------------
+
+
+\bibliography{chapters/biblio}	% .bib file containing the bibliography
+
+
+\end{document}
+

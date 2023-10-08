@@ -1,0 +1,44 @@
+# ----------------------------------------------------------------------
+#                                 LATEX 
+# ---------------------------------------------------------------------
+
+# Files created by LaTeX during compilation of the main file
+*.acn
+*.acr
+*.alg
+*.aux
+*.bbl
+*.blg
+*.glsdefs
+*.ist
+*.lof
+*.lot
+*.nlg
+*.nlo
+*.nls
+*.out
+*.sta
+*.synctex.gz
+*.toc
+*.log
+*.fdb_latexmk
+*.fls
+*blx.bib
+*.pdf
+
+# Files created while compiling the figures
+figures/*.aux
+figures/*.txt
+figures/*.pdf
+figures/*.synctex.gz
+
+# Same, but in the case of subfolders containing each a single figure
+figures/*/*.aux
+figures/*/*.txt
+figures/*/*.pdf
+figures/*/*.synctex.gz
+
+# Files used as notes for me
+*.txt
+
+
