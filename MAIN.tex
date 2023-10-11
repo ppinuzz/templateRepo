@@ -50,6 +50,17 @@
 %\usepackage{matlabstyle}				% {matlab} environment
 
 
+% GLOSSARY
+\usepackage[acronym,						
+			%toc,							% add the list to the table of contents
+			nomain,							% the Acronym page where the list is printed is not in the main THESIS.tex
+			nonumberlist,					% without reference to the page of its first appearance
+			nogroupskip,					% uniform vertical spacing of the entries
+			nopostdot]						% without full stop at the end of the description of the acronym
+			{glossaries}					% COMMAND: \acrshort{...} for the acronym, \acrlong{...} for the full name
+\makeglossaries
+
+
 % REFERENCES IN THE TEXT
 \bibliographystyle{alpha}				% citation style
 \usepackage{xurl}       				% url can be broken on several lines
@@ -106,7 +117,7 @@
 \date{\today \\[1ex] version \version}
 \maketitle
 
-Prova \cite{Qin2021} 
+Prova \cite{Qin2021} e prova \acrshort{tvd} and \acrfull{tvd}
 
 % ------------------------------------------------------------------------------
 %								APPENDICES
@@ -121,6 +132,7 @@ Prova \cite{Qin2021}
 
 
 \bibliography{chapters/biblio}	% .bib file containing the bibliography
+\input{chapters/glossary}
 
 
 \end{document}

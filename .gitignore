@@ -25,6 +25,7 @@
 *.fls
 *blx.bib
 *.pdf
+*.glo
 
 # Files created while compiling the figures
 figures/*.aux
