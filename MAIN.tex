@@ -50,6 +50,34 @@
 %\usepackage{matlabstyle}				% {matlab} environment
 
 
+% UNITS OF MEASURE (needed in NOMENCLATURE too)
+\usepackage{siunitx}						% units, scientific notation \num{3.5e-4} and decimal separator
+\sisetup{per-mode=symbol,					% uses the / instead of the ^(-1) (e.g. m/s instead of ms^-1)
+	range-phrase = \text{--}}			% for ranges: \numrange{1}{5} becomes 1--5 (long dash)
+
+
+% LIST OF SYMBOLS (NOMENCLATURE)
+\usepackage[notocbasic,						% I DON'T KNOW WHY, but it didn't work on Linux without this https://tex.stackexchange.com/questions/654662
+english]
+{nomencl}						% for the list of symbols
+\makenomenclature
+% to create sections automatically grouped in the List of Symbols (Nomenclature): https://www.overleaf.com/learn/latex/Nomenclatures#Grouping
+\usepackage{etoolbox}
+\renewcommand\nomgroup[1]{%
+	\item[\bfseries
+	\ifstrequal{#1}{A}{Physical quantities}{%
+		\ifstrequal{#1}{B}{Superscripts}{%
+			\ifstrequal{#1}{C}{Subscripts}{%
+				\ifstrequal{#1}{D}{Other symbols}{}}}}%
+	]}
+% to include units in Nomenclature (https://tex.stackexchange.com/questions/452107/)
+\newcommand{\nomunit}[1]{%
+	\renewcommand{\nomentryend}{\hspace*{\fill}#1}%
+}
+\renewcommand{\nomname}{List of Symbols}	% instead of "Nomenclature", "List of Symbols" is used
+\renewcommand{\nompreamble}{If not differently specified, thermodynamic properties are intended as static properties.}
+
+
 % GLOSSARY
 \usepackage[acronym,						
 			%toc,							% add the list to the table of contents
@@ -124,7 +152,9 @@ Prova \cite{Qin2021} e prova \acrshort{tvd} and \acrfull{tvd}
 % ------------------------------------------------------------------------------
 
 \appendix
-%\input{chapters/glossary}
+\input{chapters/nomenclature}
+\input{chapters/glossary}
+
 
 % ------------------------------------------------------------------------------
 %								BIBLIOGRAPHY
@@ -132,7 +162,6 @@ Prova \cite{Qin2021} e prova \acrshort{tvd} and \acrfull{tvd}
 
 
 \bibliography{chapters/biblio}	% .bib file containing the bibliography
-\input{chapters/glossary}
 
 
 \end{document}
