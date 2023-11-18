@@ -1,0 +1,132 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatex
+% !TEX spellcheck = en-GB
+% !BIB TS-program = bibtex
+% !TEX root = ../MAIN.tex
+
+\section{Maths}
+\subsection{Numbering equations}
+\[
+\begin{sistema}
+	x & = 1 + 2 \\
+	y & = f(x) - 3
+\end{sistema}
+\]
+
+Sistema con UN SOLO numero + graffa: \cref{eq.unica}
+\begin{equation}\label{eq.unica}
+\begin{sistema}
+	x & = 1 + 2  \\
+	y & = f(x) - 3
+\end{sistema}
+\end{equation}
+
+Sistema con un numero DIVERSO per ogni eq numerate separatamente (ma graffa stretta): \cref{eq.Sist} e \cref{eq.Sista}
+\begin{sistemaSub}
+		x & = 1 + 2 \label{eq.Sist} \\
+		y & = f(x) - 3 \label{eq.Sista}
+\end{sistemaSub}
+
+Numero COMUNE per ogni equazione + sottonumerazione (una label per l'intero sistema + una label per ogni eq.): la \cref{eq.energyBalance} contiene sia \cref{eq.EB1} che \cref{eq.EB2}
+\begin{subequations}\label{eq.energyBalance}
+	\begin{align}
+		X 	& = Y + 2 \label{eq.EB1} \\ 
+		l & = Z^2 - 3 \label{eq.EB2}
+	\end{align}
+\end{subequations}
+
+{\color{red} DA PERFEZIONARE ANCORA: (vorrei fare la stessa cosa che in quello prima, ma con un ambiente -- ora non riesco a mettere la label unica esterna e nemmeno a mettere la graffa bella)
+\begin{sistemaX}
+			X 	& = Y + 2 \label{eq.EB3} \\ 
+	l & = Z^2 - 3 \label{eq.EB4}
+\end{sistemaX}
+}
+
+\subsection{Vectors and matrices}
+\[
+\vet{v} = \vet{\omega} \cross \vet{r}
+\]
+\[
+\vet{v} = \vet{\omega} \scal \vet{r}
+\]
+\[
+\norm{x} \qquad \norm*{\int x^2}
+\]
+\[
+\abs{X} \qquad \abs*{\int x^2}
+\]
+\[
+\mat{\Omega} = 
+\begin{matrice}
+	\vertbar & x & \vertbar \\
+	y		& z & -x  \\
+	\vertbar & x & \vertbar \\
+\end{matrice}
+\qquad
+\mat{A} =
+\begin{matrice}
+    \horzbar & a^{T}_{1} & \horzbar \\[2ex]		% increase spacing
+	\horzbar & a^{T}_{2} & \horzbar \\
+			& \vdots    &          \\
+	\horzbar & a^{T}_{n} & \horzbar
+\end{matrice}
+\]
+
+\subsection{Derivatives}
+\[
+\du y
+\]
+Using the same command (default: 1st order)
+\[
+\der{f}{x} \qquad \der[2]{f}{x}
+\]
+Se lo si vuole fare inline c'è sia del 1st order: $\derline{y}{x}$ che di ordine superiore: $\derline[3]{y}{x}$
+\[
+y
+\]
+Idem, ma per quelle parziali:
+\[
+\parz{f}{x} \qquad \parz[2]{f}{x}
+\]
+e inline: $\parzline{y}{x}$ oppure $\parzline[4]{y}{x}$
+\[
+\grad f \qquad 
+\dive f \qquad 
+\curl \vet{v} \qquad
+\lap v
+\]
+Per chiarezza si possono anche mettere le \{ \} attorno alla funzione (non cambia nulla per il comando)
+\[
+\grad{f} \qquad 
+\dive{f} \qquad 
+\curl{\vet{v}} \qquad
+\lap{v}
+\]
+Derivata materiale:
+\[
+\Der{e}{t}
+\]
+
+\subsection{Miscellaneous}
+Ora i comandi \verb|\epsilon| e \verb|\phi| producono quelle belle
+\[
+\epsilon \qquad \phi
+\]
+al posto degli aborti (che, non so perché, sono il default)
+\[
+\varepsilon \qquad \varphi
+\]
+\[
+2 + 5 \ji \qquad \tilde{x} \qquad x = \cost \qquad \hat{x}
+\]
+\[
+\avg{z} \qquad \Rey
+\]
+Underbrace con testo grande (leggibile)
+\[
+\sotto{\der{x}{y} - 3 + 12x - 7}{y^2}
+\]
+Big bracket for evaluation of derivatives:
+\[
+\eval{\der{y}{x}}_{2x}
+\]

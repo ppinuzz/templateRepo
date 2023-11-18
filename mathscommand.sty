@@ -5,34 +5,53 @@
 % (for \endalign see https://tex.stackexchange.com/questions/236664/)
 \newenvironment{sistemaSub}{\align[left=\empheqlbrace]}{\endalign}				% requires EMPHEQ
 
+\newenvironment{sistemaX}{\subequations \align}{\endalign \endsubequations}
+
 
 % GENERAL NOTATION
 \newcommand{\cost}{\text{const.}}				% x = const. in upright text
+\newcommand{\ji}{\textup{i}}                    % imaginary unit in upright font
+\newcommand{\Rey}{\textup{Re}}					% Reynolds number (upright font)
+
 \renewcommand{\tilde}[1]{\widetilde{#1}}		% big tilde in place of small tilde (more visible)
+\renewcommand{\hat}[1]{\widehat{#1}}			% same, but with the hat
+
+\newcommand{\avg}[1]{\overline{#1}}				% averaging symbol
+% underbrace with display style (otherwise it's too small)
+\newcommand{\sotto}[2]{\underbrace{#1}_{\displaystyle #2}}
+
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}	% absolute value -> \abs*{...} resizes automatically
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}	% norm  -> \norm*{...} resizes automatically
-\newcommand{\ji}{\textup{i}}                    % imaginary unit in upright font
+\DeclarePairedDelimiter{\eval}{\bigg(}{\bigg)}
 
-
-% compact finite difference operator:
-% \fd{u}{t}{+}{n} = [D_t^+ u]^n = forward (+) finite difference of function u w.r.t. t evaluted at the n-th point
-\newcommand{\fd}[4]{\big[ \mathcal{D}_{#2}^{#3} #1 \big]^{#4}}
-\newcommand{\avg}[3]{\big[ \overline{#1}^{#2} \big]^{#3}}
-\newcommand{\fdavg}[4]{\big[ \overline{\mathcal{D}}_{#2}^{#3} #1 \big]^{#4}}
-
+% switch the obnoxious epsilon and phi with their nice counterparts
+\let\schifo\epsilon
+\let\epsilon\varepsilon
+\let\varepsilon\schifo
+\let\schifo\phi
+\let\phi\varphi
+\let\varphi\schifo
 
 
 % VECTOR AND MATRIX NOTATION
 \newcommand{\vet}[1]{\boldsymbol{\mathbf{#1}}}		% bold vector (requires BM)
 \newcommand{\mat}[1]{\boldsymbol{\mathbf{#1}}}		% bold matrix (requires BM)
-% vertical bars in matrices (https://tex.stackexchange.com/questions/12910/)
-\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}}
+
 \newcommand{\scal}{\cdot}							% scalar product
 \newcommand{\cross}{\times}							% vector product
+
+% handy shortcut (+ creates "parametric document": you can change the style of the entire document changing only this line)
+\newenvironment{matrice}{\begin{bmatrix}}{\end{bmatrix}}
+% vertical (and horizontal) bars in matrices (https://tex.stackexchange.com/questions/12910/)
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}}
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
+
 
 
 % DIFFERENTIAL OPERATORS
 \newcommand{\du}{\mathop{}\!\mathrm{d}}			% upright differential
+
+%\newcommand{\der}[2]{\dfrac{\du #1}{\du #2}}			% OLD: ordinary 1st derivative
 % list of arguments:
 % 	m = mandatory argument (function and variable of differentiation)
 % 	o = optional argument (order of differentiation: default is 1)
@@ -46,9 +65,36 @@
 		\dfrac{\du^{#1} #2}{\du {#3}^{#1}}
 	}
 }
-%\newcommand{\der}[2]{\dfrac{\du #1}{\du #2}}			% OLD: ordinary 1st derivative
-\newcommand{\parz}[2]{\dfrac{\partial #1}{\partial #2}}	% 1st partial derivative
+% same, but stays on a single line
+\NewDocumentCommand{\derline}{omm}{
+	\IfNoValueTF{#1}{
+		\du #2 / \du #3
+	}{
+		\du^{#1} #2 / \! \du {#3}^{#1}
+	}
+}
+
+%\newcommand{\parz}[2]{\dfrac{\partial #1}{\partial #2}}	% OLD: 1st partial derivative
+\NewDocumentCommand{\parz}{omm}{
+	\IfNoValueTF{#1}{
+		\dfrac{\partial #2}{\partial #3}
+	}{
+		\dfrac{\partial^{#1} #2}{\partial {#3}^{#1}}
+	}
+}
+%\newcommand{\parzline}[2]{\partial #1 / \partial #2}		% OLD: same, but inline
+\NewDocumentCommand{\parzline}{omm}{
+	\IfNoValueTF{#1}{
+		\partial #2 / \partial #3
+	}{
+		\partial^{#1} #2 / \partial {#3}^{#1}
+	}
+}
+
 \newcommand{\dive}{\vet{\nabla} \scal}					% divergence 
 \newcommand{\curl}{\vet{\nabla} \cross}					% curl
 \newcommand{\grad}{\vet{\nabla}}						% gradient 
 \newcommand{\lap}{\nabla^2}								% laplacian 
+
+\newcommand{\Der}[2]{\dfrac{\mathcal{D} #1}{\mathcal{D} #2}}	% material derivative
+
