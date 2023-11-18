@@ -6,5 +6,31 @@
 % in place of
 %	\footnote{...}
 % to have removable footnotes
-%\newcommand{\nota}[1]{\footnote{\color{red}#1}}	% comment this line to remove these footnotes...
-\newcommand{\nota}[1]{{\iffalse #1 \fi}}			% ... and uncomment this line
+\newcommand{\nota}[1]{\footnote{\color{red}#1}}	% comment this line to remove these footnotes...
+%\newcommand{\nota}[1]{{\iffalse #1 \fi}}			% ... and uncomment this line
+
+
+% COLOURED BOXES to highligth the text
+% Teoman's answer: https://tex.stackexchange.com/questions/66820/
+\usepackage[most]{tcolorbox}	% for color boxes
+%textmarker style from colorbox doc
+\tcbset{textmarker/.style={%
+		enhanced,
+		parbox=false,boxrule=0mm,boxsep=0mm,arc=0mm,
+		outer arc=0mm,left=6mm,right=3mm,top=7pt,bottom=7pt,
+		toptitle=1mm,bottomtitle=1mm,oversize}}
+\newtcolorbox{hintBox}{textmarker,
+	%borderline west={6pt}{0pt}{yellow},
+	colback=yellow!30!white}
+%\newcommand{\warning}[1]{\begin{hintBox} \textbf{Warning:} #1 \end{hintBox}}
+\newcommand{\colbox}[1]{\begin{hintBox} #1 \end{hintBox}}
+
+
+% USE OF MARGINS
+% highlight word + print it on the margin in bold + send to index (for keywords)
+\newcommand{\lato}[1]{\textbf{#1}\marginpar{\footnotesize \textbf{#1}}\index{#1}}
+
+\newcommand{\nb}{\textbf{NB: }}								% bold "NB:"
+\newcommand{\imp}[1]{\colorbox{yellow}{#1}}					% yellow highlight
+% https://tex.stackexchange.com/questions/296121/
+%\newcommand{\imp}[1]{\colorbox{yellow}{\parbox{\dimexpr\linewidth-2\fboxsep}{#1}}}

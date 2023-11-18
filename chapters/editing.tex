@@ -1,0 +1,26 @@
+% !TEX encoding = UTF-8 
+% !TEX TS-program = pdflatex
+% !TEX spellcheck = en-GB
+% !BIB TS-program = bibtex
+% !TEX root = ../MAIN.tex
+
+\section{Editing}
+Commentando una line in \verb|editingcommands.sty| si possono cancellare le note ROSSE a piè di pagina fatte con \verb|\nota{}|%
+\nota{Utile per snellire i documenti}
+mentre quelle NERE con \verb|\footnote{}| restano%
+\footnote{Come sempre}
+
+\colbox{Testo messo in evidenza, con le sue note normali%
+	\footnote{Tipo questa}
+	e quelle "a scomparsa"%
+	\nota{Come questa}
+}
+
+{\color{red} Dovrei mettere una flag nel preambolo del MAIN e far leggere al comando \verb|\nota{}| in editingcommand.sty quella flag, così non devo aprire il file \verb|.sty| ogni volta}
+
+
+Posso mettere una \lato{parola} in grassetto nel testo, scriverla in grassetto nel margine e mandarla all'indice con un solo comando
+
+\nb posso fare gli NB
+
+Or highlight easily \imp{important text} (has problems with line breaks tho)

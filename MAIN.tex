@@ -112,16 +112,10 @@ english]
 %							USER DEFINED COMMANDS
 % ------------------------------------------------------------------------------
 
+\usepackage{mathscommand}
+\usepackage{editingcommands}
 
-\newcommand{\lato}[1]{#1\marginpar{\footnotesize #1}}			% marginpar with small text
-\newcommand{\nb}{\textbf{NB: }}								% bold "NB:"
-\newcommand{\imp}[1]{\colorbox{yellow}{#1}}					% yellow highlight
-% https://tex.stackexchange.com/questions/296121/
-%\newcommand{\imp}[1]{\colorbox{yellow}{\parbox{\dimexpr\linewidth-2\fboxsep}{#1}}}
-\newcommand{\prov}[1]{{\color{red} #1}}						% to be checked
-
-
-\usepackage{mathsCommand}
+\newcommand{\fre}{$\Rightarrow$ }
 
 % TEXT HIGHLIGHTING (to distinguish scope of informations in the text)
 % (for the conditional compilation with \ifdefined: https://tex.stackexchange.com/questions/33576)
@@ -147,6 +141,7 @@ english]
 
 Prova \cite{Qin2021} e prova \acrshort{tvd} and \acrfull{tvd}
 
+\input{chapters/editing}
 \input{chapters/maths}
 
 % ------------------------------------------------------------------------------
