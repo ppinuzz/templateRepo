@@ -70,6 +70,9 @@
 *.sql      text
 *.epub     diff=astextplain
 
+# my addition:
+*.bib	     text
+
 # Graphics
 *.png      binary
 *.jpg      binary
