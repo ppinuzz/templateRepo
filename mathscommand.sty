@@ -1,4 +1,8 @@
 % MATHS COMMANDS
+
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xparse}							% for parsing \der[2]{f}{x} command
+
 % system of equations with ONE LABEL ONLY
 \newenvironment{sistema}{\left\{ \begin{aligned}}{\end{aligned} \right.}
 % system of equations individually numbered
@@ -6,6 +10,33 @@
 \newenvironment{sistemaSub}{\align[left=\empheqlbrace]}{\endalign}				% requires EMPHEQ
 
 \newenvironment{sistemaX}{\subequations \align}{\endalign \endsubequations}
+
+
+% EXAMPLES OF SYSTEMS (WITHOUT BRACKET):
+
+% 1) each equation has a label (N.Ma), (N.Mb), ecc. and the entire system can before
+% reference as Equation (N.M)
+% \begin{subequations}\label{eq.energyBalance}
+	% \begin{align}
+		% \frac{\du\dot{q}}{2} 	& = h_\mathrm{ext} (T_\mathrm{g,rec} - T_\mathrm{w}) b \frac{\du x}{\cos\alpha_\mathrm{b}} \label{eq.EB1} \\ 
+		% & = \frac{k_\mathrm{TBC}}{t_\mathrm{TBC}} (T_\mathrm{w} - T_\mathrm{b,ext}) b \frac{\du x}{\cos\alpha_\mathrm{b}} \label{eq.EB2} \\ 
+		% & = \frac{2k_\mathrm{b}}{t_\mathrm{b,w}} (T_\mathrm{b,ext} - T_\mathrm{b,int}) b \frac{\du x}{\cos\alpha_\mathrm{b}} \label{eq.EB3}
+	% \end{align}
+% \end{subequations}
+
+% 2) aligned equations separately labelled
+% \begin{align}
+	% \frac{\du\dot{q}}{2} 	& = h_\mathrm{ext} (T_\mathrm{g,rec} - T_\mathrm{w}) b \frac{\du x}{\cos\alpha_\mathrm{b}} \label{eq.EB1} \\ 
+		% & = \frac{k_\mathrm{TBC}}{t_\mathrm{TBC}} (T_\mathrm{w} - T_\mathrm{b,ext}) b \frac{\du x}{\cos\alpha_\mathrm{b}} \label{eq.EB2} \\ 
+		% & = \frac{2k_\mathrm{b}}{t_\mathrm{b,w}} (T_\mathrm{b,ext} - T_\mathrm{b,int}) b \frac{\du x}{\cos\alpha_\mathrm{b}} \label{eq.EB3} 
+% \end{align}
+
+% 3) aligned equations witout any number
+%\begin{aligned}
+	% \frac{\du\dot{q}}{2} 	& = h_\mathrm{ext} (T_\mathrm{g,rec} - T_\mathrm{w}) b \frac{\du x}{\cos\alpha_\mathrm{b}} \\ 
+		% & = \frac{k_\mathrm{TBC}}{t_\mathrm{TBC}} (T_\mathrm{w} - T_\mathrm{b,ext}) b \frac{\du x}{\cos\alpha_\mathrm{b}} \\ 
+		% & = \frac{2k_\mathrm{b}}{t_\mathrm{b,w}} (T_\mathrm{b,ext} - T_\mathrm{b,int}) b \frac{\du x}{\cos\alpha_\mathrm{b}} 
+%\end{aligned}
 
 
 % GENERAL NOTATION
@@ -100,3 +131,13 @@
 
 \newcommand{\Der}[2]{\dfrac{\mathcal{D} #1}{\mathcal{D} #2}}	% material derivative
 
+
+%% OTHER LESS-USED SYMBOLS
+% lower-case version of mathcal (so that \mathcal{G} and \mathcal{g} are distinct)
+% https://tex.stackexchange.com/questions/479/
+%\usepackage{dutchcal}						
+\usepackage{urwchancal}
+	\DeclareFontFamily{OT1}{pzc}{}
+	\DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.15] pzcmi7t}{}
+	\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\renewcommand{\mathcal}{\mathpzc}
