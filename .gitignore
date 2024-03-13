@@ -28,6 +28,11 @@
 *.pdf
 *.glo
 
+# same, but created by the beamer class
+*.nav
+*.snm
+*.vrb
+
 # Files created while compiling the figures
 figures/*.aux
 figures/*.txt

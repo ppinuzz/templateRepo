@@ -1,0 +1,361 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatex
+% !TEX spellcheck = en-GB
+% !BIB TS-program = bibtex
+
+\documentclass{beamer}[10]
+% se occorre creare gli HANDOUT (i.e. le slide organizzate in modo da poterle stampare senza avere 1 slide per foglio):
+% \documentclass[handout]{beamer}									% aggiunta la keyword HANDOUT
+% \usepackage{pgfpages}												% per stampare più slide per pagina
+% \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]				% {FRAMES on 1 SHEET}
+% \pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm,landscape]	% idem, ma ottimizzato per averne 4 per foglio
+\usetheme{PaloAlto}
+%\usecolortheme{crane}
+
+% \usetheme			seleziona il tema che dà l'ASPETTO GENERALE della presentazione
+% \usecolortheme 	seleziona il COLORE principale e il suo set di sfumature (e.g. ``crane'' è il giallo-arancio + le sue sfumature)
+% \useinnertheme	style of the title and part pages, the itemize, enumerate, description, block, theorem and proof environments as well as figures, tables, footnotes and bibliography entries
+% \useoutertheme	style of the head and footline, the logo, the sidebars and the frame title
+% \usefonttheme		cambia il tema dei font
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{microtype}
+
+\usepackage{booktabs}
+\usepackage{caption}
+
+\begin{document}
+	\title{My First Presentation}
+	\subtitle{Using Beamer in 2023}
+	\author{Andrea Pinardi}
+	\institute{Politecnico di Milano}
+	%\date{\today}
+	
+	% SLIDE = una singola pagina nel pdf finale
+	% FRAME = insieme di ciò che viene creato in un singolo frame environment
+	
+	% usare \pause creare fisicamente più slide (i.e. più pagine nel pdf), che sono tutte caratterizzate dallo stesso numero in basso a destra nella presentazione (i.e. compongono lo stesso frame, che viene rivelato pezzo per pezzo)
+	
+	% OGNI slide è introdotta usando l'ambiente FRAME
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+	% indice iniziale
+	\begin{frame}
+		\frametitle{Outline}
+		\tableofcontents
+	\end{frame}
+	
+	\section{Tutorial 1}
+	\subsection{sub a}
+	\begin{frame}
+		\frametitle{Titolo della slide}
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		
+		Tutto è tratto da \url{https://www.overleaf.com/learn/latex/Beamer_Presentations\%3A_A_Tutorial_for_Beginners_(Part_1)\%E2\%80\%94Getting_Started}
+	\end{frame}
+	
+	\begin{frame}
+		\label{label_della_slide}		% serve per il reindirizzamento con un hyperlink (cfr. tutorial 3)
+		\frametitle{Pacchetti che beamer carica automaticamente}
+		\begin{itemize}
+			\item graphicx
+			\item amsmath
+		\end{itemize}
+	\end{frame}
+	
+	% le liste funzionano come al solito
+	\section{Tutorial 2}
+	\begin{frame}
+		\frametitle{Liste normali}
+		\begin{enumerate}
+			\item prova
+			\item prova 2
+			\begin{itemize}
+				\item prova 3
+				\item prova 4
+			\end{itemize}
+		\end{enumerate}
+	\end{frame}
+	
+	\subsection{In numeri romani}
+	\begin{frame}
+		\frametitle{Liste romane}
+		\begin{enumerate}[i]
+			\item prova romana
+			\item prova romana 2
+			\begin{enumerate}[I]
+				\item PROVA ROMANA
+				\item PROVA ROMANA 2
+			\end{enumerate}
+		\end{enumerate}
+	\end{frame}
+	
+	\subsection{Colonne}
+	\begin{frame}
+		\frametitle{Per ordinare in colonne}
+		\begin{columns}
+			\column{0.5\textwidth}	% da dare in % dello spazio per il testo
+			Testo della prima colonna
+			\column{0.2\textwidth}
+			Testo della seconda colonna (non necessariamente larga come la prima)
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Con una foto nella colonna}
+		Se si vuole aggiungere un'immagine, NON serve caricare anche graphicx (lo carica già beamer)
+		\begin{columns}
+			\column{0.5\textwidth}
+			Qui ci la descrizione della foto a destra
+			\column{0.5\textwidth}
+			\includegraphics[scale=0.1]{prova}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Con una foto al centro}
+		Usando invece il l'ambiente figure si mette anche la caption:
+		\begin{figure}
+			\includegraphics[scale=0.2]{prova}
+			\caption{Adoro questa canzone}
+		\end{figure}
+	\end{frame}
+	
+	\subsection{Tabelle}
+	\begin{frame}
+		\frametitle{Tablle normali}
+		Funzionano come sempre: la tabella vera e propria la sia crea con TABULAR, poi con TABLE la si rende flottante e si possono aggiungere anche altri opzioni (e.g. la caption)
+		\begin{table}
+			\begin{tabular}{lcc}
+				\toprule
+				Nome & Anno & Culo \\
+				\midrule
+				Sei & 7 & sehila \\
+				Sei & 7 & sehila \\
+				Sei & 7 & sehila \\
+				Sei & 7 & sehila \\
+				\bottomrule
+			\end{tabular}
+			\caption{Caption della tabella}
+		\end{table}
+	\end{frame}
+	
+	\section{Tutorial 3}
+	
+	\subsection{Blocks}
+	\begin{frame}
+		\frametitle{Base}
+		Per le aree di testo riquadrate, usare l'ambiente BLOCK:
+		\begin{block}{Titolo del block}
+			Come ai tempi di Statistica
+		\end{block}
+		Per avere la versione in rosso, usare ALERTBLOCK:
+		\begin{alertblock}{Titolo del block rosso}
+			Warning vari qui
+		\end{alertblock}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Per la matematica}
+		Per avere invece delle definizioni, usare DEFINITION come block:
+		\begin{definition}
+			Def. di qualcosa
+		\end{definition}
+		e, analogamente, per avere degli esempi usare EXAMPLE:
+		\begin{example}
+			Esempio di esercizio
+		\end{example}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Per la matematica - 2}
+		Analoghi, sono gli ambienti ``già nominati'' THEOREM:
+		\begin{theorem}[Nome del teorema]
+			Sia $\sum_{i=1}^N f(x_i)$ una successione...
+		\end{theorem}
+		l'ambiente COROLLARY:
+		\begin{corollary}[Del teo che voglio]
+			Culo
+		\end{corollary}
+		e l'ambiente PROOF:
+		\begin{proof}
+			Dimostrazione...
+		\end{proof}
+		Sia THEOREM che COROLLARY, di default, sono in corsivo
+	\end{frame}
+	
+	\subsection{Codice}
+	\begin{frame}[fragile]		% serve per inserire il codice
+		\frametitle{Snippet di codice}
+		Per il codice occorre:
+		\begin{enumerate}
+			\item usare l'argomento opzionale FRAGILE per l'ambiente frame della slide
+			\item usare l'ambiente SEMIVERBATIM
+			\item per alcuni caratteri occorre inserire un backslash prima:
+			\begin{itemize}
+				\item backslash
+				\item parentesi graffe
+			\end{itemize}
+		\end{enumerate}
+		Snippet in C:
+		\begin{semiverbatim}
+			#include<stdio.h>
+			int main()\{
+			
+			return 0;
+			\}
+		\end{semiverbatim}
+	\end{frame}
+	
+	\subsection{Hyperlinks e buttons}
+	\begin{frame}
+		\frametitle{Mettere hyperlink}
+		Nelle slide (frames) che si vuole collegare, occorre aggiungere una LABEL subito dopo il frame (cfr. la slide con l'elenco dei pacchetti, che puoi vedere cliccando \hyperlink{label_della_slide}{PROPRIO QUI})
+		
+		Se vuoi essere fancy, puoi usare un buttons anziché l'hyperlink normale, usando un BEAMERBUTTON, come in questo comando: \hyperlink{label_della_slide}{\beamerbutton{BOTTONE SLIDE}}
+		
+		Altri tipi di bottoni possibili sono:
+		\begin{itemize}
+			\item il GO TO: \hyperlink{label_della_slide}{\beamergotobutton{BOTTONE GO-TO}}
+			\item lo SKIP: \hyperlink{label_della_slide}{\beamerskipbutton{BOTTONE GO-TO}}
+			\item il RETURN: \hyperlink{label_della_slide}{\beamerreturnbutton{BOTTONE GO-TO}}
+		\end{itemize}
+		che ti riportano tutti nello stesso posto (il nome diverso è solamente ``estetico'', non c'è differenza pratica come effetto)
+	\end{frame}
+	
+	\section{Pausa}
+	\begin{frame}
+		\frametitle{Liste}
+		\begin{itemize}
+			\pause
+			\item Point A
+			\pause
+			\item Point B
+			\begin{itemize}
+				\pause
+				\item part 1
+				\pause
+				\item part 2
+			\end{itemize}
+			\pause
+			\item Point C
+			\pause
+			\item Point D
+		\end{itemize}
+	\end{frame}
+	
+	% OVERLAY SPECIFICATION = vengono date con le parentesi uncinate <>, indicando tra le parentesi su quale *slide* (NON frame) dovrebbe apparire l'elemento
+	% <3->			appare dalla slide 3 in poi
+	% <-3>			appare dalla prima slide alla 3, poi non più
+	% <-5,7-9,12>	appare dalla slide 1 alla 5, poi appare solamente sulle slida dalla 7 alla 9 e sulla slide 12
+	
+	\section{Overlay specifications}
+	\begin{frame}
+		\frametitle{Overlay spec.}
+		\begin{enumerate}
+			\item<1-> Point A
+			\item<2-> Point B
+		\end{enumerate}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Overlays trasparenti}
+		\onslide<1->{First Line of Text}
+		
+		\setbeamercovered{transparent}		% TUTTO il testo dell'overlay indicato da \onslide, da qui in poi, apparirà come trasparente
+		\onslide<2->{Second Line of Text}
+		
+		\onslide<3->{Third Line of Text}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Overlays trasparenti 2}
+		\onslide<1->{First Line of Text}
+		
+		\setbeamercovered{transparent}
+		\onslide<2->{Second Line of Text}
+		
+		\setbeamercovered{invisible}		% se voglio che questo invece sia invisibile, devo esplicitamente reimpostarlo
+		\onslide<3->{Third Line of Text}
+	\end{frame}
+	
+	% Altri comandi simili:
+	%	\visible 	stesso effetto di \uncover, però lascia uno spazio bianco sulla slide in QUALSIASI caso (anche se si usa \setbeamercovered{transparent})
+	%	\invisible	opposto di \visible
+	%	\only 		stesso effetto di \visibile, però NON occupa spazio (i.e. il testo appare sempre ``nella stessa posizione'', come se ogni volta la frase venisse sostituita da un'altra)
+	
+	\begin{frame}
+		\frametitle{Overlays trasparenti 3}
+		\only<1>{First Line of Text}
+		
+		\only<2>{Second Line of Text}
+		
+		\only<3>{Third Line of Text}
+	\end{frame}
+	
+	% i comandi per il text formatting pensati per funzionare con gli overlay restituiranno:
+	%	- testo normale quando agiranno su slide non dichiarate nelle specifications (i.e. tra le <> ?)
+	%	testo formattato come indicato, negli altri casi
+	
+	% Le overlay specifications SPESSO funzionano anche con gli ambienti, però la specification tra le <...> va messa DOPO il nome dell'ambiente tra le graffe
+	
+	\begin{frame}
+		\frametitle{Maths Blocks}
+		\begin{theorem}<1->[Pythagoras] 
+			$ a^2 + b^2 = c^2$
+		\end{theorem}
+		\begin{corollary}<3->
+			$ x + y = y + x  $
+		\end{corollary}
+		\begin{proof}<2->
+			$\omega +\phi = \epsilon $
+		\end{proof}
+	\end{frame}
+	
+	\section{Tabelle riga-per-riga animate}
+	\setbeamercovered{invisible}
+	\begin{frame}
+		\frametitle{Tables}
+		\begin{table}
+			\begin{tabular}{l | c | c | c | c }
+				Competitor Name & Swim  & Cycle & Run   & Total              \\ \hline\hline
+				John T          & 13:04 & 24:15 & 18:34 & 55:53 \onslide<2-> \\
+				Norman P        & 8:00  & 22:45 & 23:02 & 53:47 \onslide<3-> \\
+				Alex K          & 14:00 & 28:00 & n/a   & n/a \onslide<4->   \\
+				Sarah H         & 9:22  & 21:10 & 24:03 & 54:35
+			\end{tabular}
+			\caption{Triathlon results}
+		\end{table}
+	\end{frame}
+	
+	\section{Tutorial 4}
+	
+\end{document}
+
+%\usepackage{pgf}
+%\usepackage{beamerthemesplit}
+
+%\definecolor{kugreen}{RGB}{50,93,61}
+%\definecolor{kugreenlys}{RGB}{132,158,139}
+%\definecolor{kugreenlyslys}{RGB}{173,190,177}
+%\definecolor{kugreenlyslyslys}{RGB}{214,223,216}
+%\setbeamercovered{transparent}
+%\mode<presentation>
+%\usetheme[numbers,totalnumber,compress,sidebarshades]{PaloAlto}
+%\setbeamertemplate{footline}[frame number]
+%
+%\usecolortheme[named=kugreen]{structure}
+%\useinnertheme{circles}
+%\usefonttheme[onlymath]{serif}
+%\setbeamercovered{transparent}
+%\setbeamertemplate{blocks}[rounded][shadow=true]
+%
+%%\logo{\includegraphics[width=1.5cm]{billeder/logo}}
+%\title{Dæmpning af seismiske bølger}
+%\author{Thomas R. N. Jansson}
+%\institute{Niels Bohr Institute \\ University of Copenhagen}
+%\date{21 December 2007}
